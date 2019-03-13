@@ -1,0 +1,112 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;
+  background-color: #ddd !important;
+}
+
+.clearfix:before {
+  display: table;
+  content: " ";
+}
+
+.clearfix:after {
+  display: table;
+  content: " ";
+  clear: both;
+}
+
+select.my-select {
+  height: 60px;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  outline: none;
+  border-radius: 3px;
+  font-size: 20px;
+  line-height: 60px;
+  padding: 0 15px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  position: relative;
+  border: 1px solid #eee;
+  cursor: pointer;
+}
+
+select.my-select option {
+  font-size: 18px;
+}
+
+.my-button {
+  border-radius: 6px;
+  height: 50px;
+  font-size: 16px;
+  font-family: Arial, Helvetica, sans-serif;
+  border: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  outline: none;
+  text-align: center;
+  color: white;
+  line-height: 50px;
+  font-size: 18px;
+  padding: 0 30px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.my-button.small {
+  height: 30px;
+  line-height: 30px;
+  padding: 0 15px;
+  font-size: 14px;
+}
+
+.my-button.primary {
+  background: #337ab7;
+}
+
+.my-button.primary:hover {
+  background: #21649e;
+}
+
+.my-button.gold {
+  background: #b9a21c;
+}
+
+.my-button.gold:hover {
+  background: #9e8a1b;
+}
+
+.txt-right {
+  text-align: right;
+}
+
+.txt-center {
+  text-align: center;
+}
+
+.txt-left {
+  text-align: left;
+}
+
+.bold-txt {
+  font-weight: bold;
+}
+
+.link-txt {
+  color: #2b5abe;
+  cursor: pointer;
+}
+
+.red-txt {
+  color: #9c0303;
+}
+
+.link-txt:hover {
+  color: #7292d8;
+}

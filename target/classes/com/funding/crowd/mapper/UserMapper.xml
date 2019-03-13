@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.funding.crowd.mapper.UserMapper">
+  <insert id="signup" parameterType="User" >
+    INSERT INTO `user` (`username`, `password`, `email`) 
+     VALUES
+      (#{username}, #{password}, #{email}) ;
+
+  </insert>
+  <select id="signin" parameterType="User" resultType="int">
+    SELECT 
+      count(*)
+      FROM
+     `user` where username=#{username} and password=#{password}
+  </select>
+  <update id="submitinfo" parameterType="User">
+     UPDATE 
+	  `user` 
+	SET
+	  `email` = #{email},
+	  `firstName` = #{firstName},
+	  `lastName` = #{lastName},
+	  `userImage` = #{userImage} 
+	WHERE `username` = #{username}
+  </update>
+</mapper>

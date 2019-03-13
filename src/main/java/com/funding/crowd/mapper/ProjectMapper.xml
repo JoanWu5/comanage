@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.funding.crowd.mapper.ProjectMapper">
+    <insert id="submitProject" parameterType="Project" >
+   INSERT INTO `project` (
+	  `jointAccountId`,
+	  `projectName`,
+	  `username`,
+	  `category`,
+	  `gruopName`,
+	  `breifIntro`,
+	  `accountId`,
+	  `projectImage`
+	) 
+	VALUES
+	  (
+	    #{jointAccountId},
+	    #{projectName},
+	    #{username},
+	    #{category},
+	    #{gruopName},
+	    #{breifIntro},
+	    #{accountId},
+	    #{projectImage}
+	  ) ;
+  </insert>
+  <insert id="submitProcess" parameterType="ProcessIntro">
+    INSERT INTO `processintro` (`jointAccountId`, `stage`, `days`,`processImage`) 
+		VALUES
+		  (#{jointAccountId}, #{stage}, #{days},#{processImage}) ;
+  </insert>
+  <insert id="submitSetting" parameterType="Setting">
+     INSERT INTO `setting` (
+	  `jointAccountId`,
+	  `upperLimitFunds`,
+	  `lowerLimitFunds`,
+	  `scaleReviewing`,
+	  `scaleReport`
+	) 
+	VALUES
+	  (
+	    #{jointAccountId},
+	    #{upperLimitFunds},
+	    #{lowerLimitFunds},
+	    #{scaleReviewing},
+	    #{scaleReport}
+	  ) ;   
+  </insert>
+  <insert id="submitGroup" parameterType="Group">
+     INSERT INTO `group` (
+	  `groupName`,
+	  `groupbreifIntro`,
+	  `participantId`,
+	  `managerId`,
+	  `groupImage`
+	) 
+	VALUES
+	  (
+	    #{groupName},
+	    #{groupbreifIntro},
+	    #{participantId},
+	    #{managerId},
+	    #{groupImage}
+	  ) ;
+     
+  </insert>
+  <resultMap type="Group" id="Group_Project_map">
+    <result property="gruopName" column="gruopName"/>
+    <result property="groupbreifIntro" column="groupbreifIntro"/>
+    <result property="participantId" column="participantId"/>
+    <result property="managerId" column="managerId"/>
+    <!-- association:配置一对一关联
+			 property:绑定的用户属性
+			 javaType:属性数据类型，支持别名
+	-->
+	<association property="Project" javaType="Project">
+	   <result property="projectName" column="projectName"/>
+	   <result property="jointAccountId" column="jointAccountId"/>
+	   <result property="username" column="username"/>
+	   <result property="category" column="category"/>
+	   <result property="gruopName" column="gruopName"/>
+	   <result property="breifIntro" column="breifIntro"/>
+	   <result property="accountId" column="accountId"/>
+	   <result property="projectImage" column="projectImage"/>
+	</association>
+    
+  </resultMap>
+  <select id="getGroup" parameterType="String" resultMap="Group_Project_map">
+    SELECT
+		  g.`groupName`,
+		  g.`groupbreifIntro`,
+		  g.`participantId`,
+		  g.`managerId`,
+		FROM `group` g
+		LEFT JOIN `project` p
+		ON g.`groupName` = p.`groupName` and p.`username`=#{username}
+    
+  </select>
+</mapper>
